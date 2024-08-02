@@ -4,22 +4,28 @@ import { Stack, Box, Avatar, Typography, IconButton, Divider } from "@mui/materi
 import { useTheme } from "@mui/material/styles";
 import { CaretDown, MagnifyingGlass, Phone, VideoCamera } from 'phosphor-react';
 import { StyledBadge } from '../settings/StyledBadge';
+import { useDispatch } from 'react-redux';
+import { ToggleSidebar } from '../../redux/slices/app';
 
 
 
 const Header = () => {
     const theme = useTheme();
+    const dispatch = useDispatch();
     return (
         <Box p={2} sx={{ width: "100%", backgroundColor: theme.palette.mode === "light" ? "#F0F4FA" : theme.palette.background.paper, boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)" }}>
             <Stack alignItems={"center"} direction={"row"} justifyContent={"space-between"} sx={{ width: "100%", height: "100%" }}>
                 <Stack direction={"row"} spacing={2}>
                     <Box>
                         <StyledBadge
-                            overlap="circular"
-                            anchorOrigin={{
-                                vertical: "bottom", horizontal: "right"
+                            onClick={() => {
+                                dispatch(ToggleSidebar())
+                                console.log("first")
                             }}
-                            variant="dot">
+                            overlap="circular"
+                            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                            variant="dot"
+                        >
                             <Avatar alt={faker.person.fullName()} src={faker.image.avatar()} />
                         </StyledBadge>
                     </Box>

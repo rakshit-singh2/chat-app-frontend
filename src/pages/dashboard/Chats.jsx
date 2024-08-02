@@ -126,7 +126,6 @@ import {
       <Box
         sx={{
           position: "relative",
-  
           width: 320,
           backgroundColor: theme.palette.mode === "light" ? "#F8FAFF" : theme.palette.background.paper,
           boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)",
