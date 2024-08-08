@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import axios from "../../utils/axios";
-import { showSnackbar } from "./app";
+import { ShowSnackbar } from "./app";
 
 // ----------------------------------------------------------------------
 
@@ -67,7 +67,7 @@ export function NewPassword(formValues) {
             })
           );
         dispatch(
-          showSnackbar({ severity: "success", message: response.data.message })
+          ShowSnackbar({ severity: "success", message: response.data.message })
         );
         dispatch(
           slice.actions.updateIsLoading({ isLoading: false, error: false })
@@ -75,7 +75,7 @@ export function NewPassword(formValues) {
       })
       .catch(function (error) {
         console.log(error);
-        dispatch(showSnackbar({ severity: "error", message: error.message }));
+        dispatch(ShowSnackbar({ severity: "error", message: error.message }));
         dispatch(
           slice.actions.updateIsLoading({ isLoading: false, error: true })
         );
@@ -111,7 +111,7 @@ export function ForgotPassword(formValues) {
       })
       .catch(function (error) {
         console.log(error);
-        dispatch(showSnackbar({ severity: "error", message: error.message }));
+        dispatch(ShowSnackbar({ severity: "error", message: error.message }));
         dispatch(
           slice.actions.updateIsLoading({ isLoading: false, error: true })
         );
@@ -156,7 +156,7 @@ export function LoginUser(formValues) {
       })
       .catch(function (error) {
         console.log(error);
-        dispatch(showSnackbar({ severity: "error", message: error.message }));
+        dispatch(ShowSnackbar({ severity: "error", message: error.message }));
         dispatch(
           slice.actions.updateIsLoading({ isLoading: false, error: true })
         );
@@ -202,7 +202,7 @@ export function RegisterUser(formValues) {
       })
       .catch(function (error) {
         console.log(error);
-        dispatch(showSnackbar({ severity: "error", message: error.message }));
+        dispatch(ShowSnackbar({ severity: "error", message: error.message }));
         dispatch(
           slice.actions.updateIsLoading({ error: true, isLoading: false })
         );
@@ -252,7 +252,7 @@ export function VerifyEmail(formValues) {
       })
       .catch(function (error) {
         console.log(error);
-        dispatch(showSnackbar({ severity: "error", message: error.message }));
+        dispatch(ShowSnackbar({ severity: "error", message: error.message }));
         dispatch(
           slice.actions.updateIsLoading({ error: true, isLoading: false })
         );

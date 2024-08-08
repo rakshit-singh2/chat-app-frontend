@@ -1,22 +1,77 @@
-import React from "react";
-import { Box, IconButton, Stack, Typography, Divider, Avatar, Button, useTheme } from "@mui/material";
+import React, { forwardRef, useState } from "react";
+import { Box, IconButton, Stack, Typography, Divider, Avatar, Button, useTheme, Dialog, DialogContent, DialogTitle, DialogContentText, DialogActions, Slide } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { faker } from "@faker-js/faker";
 import { VideoCamera, Phone, CaretRight, Star, Bell, Flag, Trash, XCircle } from "phosphor-react";
-import AntSwitch from '../AntSwitch';
-import { ToggleSidebar, UpdateSidebarType } from "../../redux/slices/app";
+import AntSwitch from './AntSwitch';
+import { ToggleSideBar, UpdateSidebarType } from "../redux/slices/app";
+
+const Transition = forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+});
+
+const BlockDialog = ({ open, handleClose }) => {
+    return (
+        <Dialog
+            open={open}
+            TransitionComponent={Transition}
+            keepMounted
+            onClose={handleClose}
+            aria-describedby="alert-dialog-slide-description"
+        >
+            <DialogTitle>Block this contact</DialogTitle>
+            <DialogContent>
+                <DialogContentText id="alert-dialog-slide-description">
+                    Are you sure you want to block this Contact?
+                </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+                <Button onClick={handleClose}>Cancel</Button>
+                <Button onClick={handleClose}>Yes</Button>
+            </DialogActions>
+        </Dialog>
+    );
+};
+
+const DeleteDialog = ({ open, handleClose }) => {
+
+    return (
+        <Dialog
+            open={open}
+            TransitionComponent={Transition}
+            keepMounted
+            onClose={handleClose}
+            aria-describedby="alert-dialog-slide-description"
+        >
+            <DialogTitle>Delete this contact</DialogTitle>
+            <DialogContent>
+                <DialogContentText id="alert-dialog-slide-description">
+                    Are you sure you want to delete this Contact?
+                </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+                <Button onClick={handleClose}>Cancel</Button>
+                <Button onClick={handleClose}>Yes</Button>
+            </DialogActions>
+        </Dialog>
+    );
+};
 
 const Contact = () => {
+    const [openBlock, setOpenBlock] = useState(false);
+    const [openDelete, setOpenDelete] = useState(false);
     const theme = useTheme();
     const dispatch = useDispatch();
+    const handleCloseBlock = () => {
+        setOpenBlock(false);    }
+
+    const handleDeleteBlock = () => {
+        setOpenDelete(false);
+    }
 
     return (
         <Box sx={{ width: 320, height: "100vh" }}>
-            <Stack
-                sx={{
-                    height: "100%"
-                }}
-            >
+            <Stack sx={{ height: "100%" }} >
                 {/* Header */}
                 <Box
                     p={2}
@@ -43,7 +98,7 @@ const Contact = () => {
                         </Typography>
                         <IconButton
                             onClick={() => {
-                                dispatch(ToggleSidebar());
+                                dispatch(ToggleSideBar());
                             }}
                         >
                             <XCircle size={24} />
@@ -70,7 +125,7 @@ const Contact = () => {
                         direction={"row"}
                         spacing={2}
                     >
-                        <Avatar src={faker.image.avatar()} alt={faker.name.firstName()} sx={{ height: 64, width: 64 }} />
+                        <Avatar src={faker.image.avatar()} alt={faker.person.firstName()} sx={{ height: 64, width: 64 }} />
                         <Stack
                             direction={"column"}
                             spacing={0.5}
@@ -140,7 +195,6 @@ const Contact = () => {
                             endIcon={<CaretRight />}
                             onClick={() => {
                                 dispatch(UpdateSidebarType("SHARED"));
-
                             }}
                         >
                             201
@@ -152,9 +206,9 @@ const Contact = () => {
                         alignItems={"center"}
                         justifyContent={"space-evenly"}
                     >
-                        {[1, 2, 3].map((el) => (
-                            <Box>
-                                <img src={faker.image.food()} alt={faker.person.fullName()} />
+                        {[1, 2, 3].map((el, index) => (
+                            <Box key={index}>
+                                <img src={faker.image.urlLoremFlickr({ category: 'food' })} alt={faker.person.fullName()} />
                             </Box>
                         ))}
                     </Stack>
@@ -227,7 +281,7 @@ const Contact = () => {
                             spacing={2}
                             alignItems={"center"}
                         >
-                            <Avatar src={faker.image.avatar()} alt={faker.name.fullName()} />
+                            <Avatar src={faker.image.avatar()} alt={faker.person.fullName()} />
                             <Stack
                                 direction={"column"}
                                 spacing={0.5}
@@ -269,6 +323,8 @@ const Contact = () => {
                     </Stack>
                 </Stack>
             </Stack>
+            {openBlock && <BlockDialog open={openBlock} handleClose={handleCloseBlock} />}
+            {openDelete && <DeleteDialog open={openDelete} handleClose={handleDeleteBlock} />}
         </Box>
     )
 }

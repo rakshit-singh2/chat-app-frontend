@@ -5,53 +5,101 @@ import { useTheme } from "@mui/material/styles";
 import { CaretDown, MagnifyingGlass, Phone, VideoCamera } from 'phosphor-react';
 import { StyledBadge } from '../settings/StyledBadge';
 import { useDispatch } from 'react-redux';
-import { ToggleSidebar } from '../../redux/slices/app';
-
+import { ToggleSideBar } from '../../redux/slices/app';
 
 
 const Header = () => {
+
     const theme = useTheme();
     const dispatch = useDispatch();
-    return (
-        <Box p={2} sx={{ width: "100%", backgroundColor: theme.palette.mode === "light" ? "#F0F4FA" : theme.palette.background.paper, boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)" }}>
-            <Stack alignItems={"center"} direction={"row"} justifyContent={"space-between"} sx={{ width: "100%", height: "100%" }}>
-                <Stack direction={"row"} spacing={2}>
-                    <Box>
-                        <StyledBadge
-                            onClick={() => {
-                                dispatch(ToggleSidebar())
-                                console.log("first")
-                            }}
-                            overlap="circular"
-                            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                            variant="dot"
+
+  return (
+    <Box
+            p={2}
+            sx={{
+                height: 100,
+                width: "100%",
+                backgroundColor: theme.palette.mode === "light" ? "#F8FAFF" : theme.palette.background.paper,
+                boxShadow: "0 0 2px rgba(0, 0, 0, 0.25)"
+            }}
+        >
+            <Stack                
+                direction={"row"}                   
+                alignItems={"center"}
+                justifyContent={"space-between"} 
+                sx={{
+                    width: "100%",
+                    height: "100%"
+                }}    
+            >
+                <Stack                     
+                    direction={"row"}
+                    alignItems={"center"}
+                    spacing={3}
+                >
+                    <StyledBadge
+                    onClick={() => {
+                        dispatch(ToggleSideBar())
+                    }}
+                        overlap="circular"
+                        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                        variant="dot"
+                    >
+                        <Avatar alt={faker.person.fullName()} src={faker.image.avatar()} />
+                    </StyledBadge>
+                        <Stack
+                            spacing={0.2}
+                            direction={"column"}
                         >
-                            <Avatar alt={faker.person.fullName()} src={faker.image.avatar()} />
-                        </StyledBadge>
-                    </Box>
-                    <Stack spacing={0.2}>
-                        <Typography variant="subtitle2">{faker.person.fullName()}</Typography>
-                        <Typography variant="caption">Online</Typography>
-                    </Stack>
+                            <Typography variant='subtitle2'>
+                                {faker.person.fullName()}
+                            </Typography>
+                            <Typography variant='caption'>
+                            Online
+                            </Typography>    
+                    </Stack>           
                 </Stack>
-                <Stack direction="row" alignItems={"center"} spacing={3}>
-                    <IconButton>
-                        <VideoCamera />
+                <Stack 
+                    direction="row"
+                    alignItems={"center"}
+                    spacing={3}                    
+                >
+                    <IconButton
+                        sx={{
+                            color: theme.palette.mode === 'light' ? "#000" : theme.palette.text.primary
+                        }}
+                    >
+                        <VideoCamera size={24} />
                     </IconButton>
-                    <IconButton>
-                        <Phone />
+                    <IconButton
+                        sx={{
+                            color: theme.palette.mode === 'light' ? "#000" : theme.palette.text.primary
+                        }}
+                    >
+                        <Phone size={24} />
                     </IconButton>
-                    <IconButton>
-                        <MagnifyingGlass />
+                    <IconButton
+                        sx={{
+                            color: theme.palette.mode === 'light' ? "#000" : theme.palette.text.primary
+                        }}
+                    >
+                        <MagnifyingGlass size={24} />
                     </IconButton>
-                    <Divider orientation="vertical" flexItem />
-                    <IconButton>
-                        <CaretDown />
-                    </IconButton>
+                     <Divider 
+                        orientation={"vertical"}
+                        flexItem
+                    />
+                    <IconButton
+                        sx={{
+                            color: theme.palette.mode === 'light' ? "#000" : theme.palette.text.primary
+                        }}
+                    >
+                        <CaretDown size={24} />
+                    </IconButton> 
                 </Stack>
             </Stack>
         </Box>
-    )
+  )
 }
 
-export default Header
+export default Header;

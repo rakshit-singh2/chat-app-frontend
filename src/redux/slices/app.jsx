@@ -90,7 +90,7 @@ export const closeSnackBar = () => async (dispatch, getState) => {
   dispatch(slice.actions.closeSnackBar());
 };
 
-export const showSnackbar =
+export const ShowSnackbar =
   ({ severity, message }) =>
   async (dispatch, getState) => {
     dispatch(
@@ -105,7 +105,7 @@ export const showSnackbar =
     }, 4000);
   };
 
-export function ToggleSidebar() {
+export function ToggleSideBar() {
   return async (dispatch, getState) => {
     dispatch(slice.actions.toggleSideBar());
   };
