@@ -8,6 +8,7 @@ import DashboardLayout from "../layouts/dashboard";
 import { DEFAULT_PATH } from "../config";
 import LoadingScreen from "../components/LoadingScreen";
 import Settings from "../pages/dashboard/Settings";
+import Login from "../pages/auth/Login";
 
 const Loadable = (Component) => (props) => {
   return (
@@ -18,20 +19,27 @@ const Loadable = (Component) => (props) => {
 };
 
 export default function Router() {
-  return useRoutes([
-    {
-      path: "/",
-      element: <DashboardLayout />,
-      children: [
-        { element: <Navigate to={DEFAULT_PATH} replace />, index: true },
-        { path: "app", element: <GeneralApp /> },
-        { path: "settings", element: <Settings /> },
-        
-        { path: "404", element: <Page404 /> },
-        { path: "*", element: <Navigate to="/404" replace /> },
-      ],
-    },
-    { path: "*", element: <Navigate to="/404" replace /> },
+  return useRoutes([{
+    path: "/auth",
+    element: <></>,
+    children: [
+      { element: <Login/>, index: true },
+
+    ],
+  },
+  {
+    path: "/",
+    element: <DashboardLayout />,
+    children: [
+      { element: <Navigate to={DEFAULT_PATH} replace />, index: true },
+      { path: "app", element: <GeneralApp /> },
+      { path: "settings", element: <Settings /> },
+
+      { path: "404", element: <Page404 /> },
+      { path: "*", element: <Navigate to="/404" replace /> },
+    ],
+  },
+  { path: "*", element: <Navigate to="/404" replace /> },
   ]);
 }
 

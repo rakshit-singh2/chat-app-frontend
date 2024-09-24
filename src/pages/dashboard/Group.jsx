@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Stack, Box, Button, Divider, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import SearchHeader from '../../components/SearchHeader';
-import { Plus } from '@phosphor-icons/react';
+import { Plus } from 'phosphor-react';
 import PinnedConversations from '../../components/PinnedConversations';
 import AllConversations from '../../components/AllConversations';
 import CreateNewGroup from '../../sections/creategroup/CreateNewGroup';
