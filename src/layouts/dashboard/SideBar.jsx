@@ -1,21 +1,23 @@
 import React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Gear } from "phosphor-react";
-import { Avatar, Box, Divider, IconButton, Stack} from "@mui/material";
+import { Avatar, Box, Divider, IconButton, Stack } from "@mui/material";
 import Logo from "../../assets/Images/logo.ico";
 import { Nav_Buttons } from "../../data"
 import { faker } from '@faker-js/faker';
 import useSettings from "../../hooks/useSettings";
 import AntSwitch from "../../components/AntSwitch";
+import { useNavigate } from "react-router-dom";
 
 const SideBar = () => {
     const theme = useTheme();
+    const navigate = useNavigate();
 
     const { onToggleMode } = useSettings();
     const [selectedTab, setSelectedTab] = React.useState(0);
-  
+
     const handleChangeTab = (index) => {
-      setSelectedTab(index);
+        setSelectedTab(index);
     };
 
     return (
@@ -102,6 +104,7 @@ const SideBar = () => {
                                 sx={{ width: "max-content", color: theme.palette.mode === 'light' ? "#000" : "#fff" }}
                                 onClick={() => {
                                     handleChangeTab(3);
+                                    navigate("/settings");
                                 }}
                             >
                                 <Gear />
@@ -117,7 +120,7 @@ const SideBar = () => {
 
                         }}
                         defaultChecked />
-                    <Avatar src={faker.image.avatar()} />
+                    <Avatar src={faker.image.urlLoremFlickr({ category: 'avatar' })} />
                 </Stack>
             </Stack >
         </Box >

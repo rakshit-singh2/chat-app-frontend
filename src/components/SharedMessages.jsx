@@ -85,7 +85,7 @@ const SharedMessages = () => {
                                             [1, 2, 3, 4, 5, 6].map((el, index) => {
                                                 return <Grid key={index} item xs={4}>
                                                     <img
-                                                        src={faker.image.avatar()}
+                                                        src={faker.image.urlLoremFlickr({ category: 'avatar' })}
                                                         alt={faker.person.fullName()}
                                                     />
                                                 </Grid>

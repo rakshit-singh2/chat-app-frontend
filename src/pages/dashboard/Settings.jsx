@@ -118,7 +118,7 @@ const Settings = () => {
                         p={3}
                     >
                         <Avatar
-                            src={faker.image.avatar()}
+                            src={faker.image.urlLoremFlickr({ category: 'avatar' })}
                             alt={faker.person.fullName()}
                             sx={{
                                 height: 75,

@@ -45,7 +45,7 @@ const Header = () => {
                         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
                         variant="dot"
                     >
-                        <Avatar alt={faker.person.fullName()} src={faker.image.avatar()} />
+                        <Avatar alt={faker.person.fullName()} src={faker.image.urlLoremFlickr({ category: 'avatar' })} />
                     </StyledBadge>
                         <Stack
                             spacing={0.2}

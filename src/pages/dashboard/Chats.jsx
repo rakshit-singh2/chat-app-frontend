@@ -69,10 +69,10 @@ import {
                 anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
                 variant="dot"
               >
-                <Avatar src={faker.image.avatar()} />
+                <Avatar src={faker.image.urlLoremFlickr({ category: 'avatar' })} />
               </StyledBadge>
             ) : (
-              <Avatar src={faker.image.avatar()} />
+              <Avatar src={faker.image.urlLoremFlickr({ category: 'avatar' })} />
             )}
   
             <Stack spacing={0.3}>

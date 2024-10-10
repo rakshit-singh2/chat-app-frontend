@@ -1,4 +1,5 @@
 import { faker } from "@faker-js/faker";
+import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined';
 import {
   ChatCircleDots,
   Gear,
@@ -7,20 +8,24 @@ import {
   SignOut,
   User,
   Users,
+  
 } from "phosphor-react";
 
 const Profile_Menu = [
   {
+    id: 0,
     title: "Profile",
     icon: <User />,
   },
   {
+    id: 1,
     title: "Settings",
-    icon: <Gear />,
+    icon: <Gear />,    
   },
   {
-    title: "Profile",
-    icon: <SignOut />,
+    id: 2,
+    title: "Logout",
+    icon: <SignOut />,    
   },
 ];
 
@@ -28,14 +33,26 @@ const Nav_Buttons = [
   {
     index: 0,
     icon: <ChatCircleDots />,
+    route: "/app",
+    title: "Chats"    
   },
   {
     index: 1,
     icon: <Users />,
+    route: "/group",
+    title: "Group Chats" 
   },
   {
     index: 2,
     icon: <Phone />,
+    route: "/call",
+    title: "Voice and Video Calling" 
+  },
+  {
+    index: 3,
+    icon: <AdminPanelSettingsOutlinedIcon />,
+    route: "/admin",
+    title: "Admin"
   },
 ];
 
@@ -49,7 +66,7 @@ const Nav_Setting = [
 const ChatList = [
   {
     id: 0,
-    img: faker.image.avatar(),
+    img: faker.image.urlLoremFlickr({ category: 'avatar' }),
     name: faker.person.firstName(),
     msg: faker.music.songName(),
     time: "9:36",
@@ -59,7 +76,7 @@ const ChatList = [
   },
   {
     id: 1,
-    img: faker.image.avatar(),
+    img: faker.image.urlLoremFlickr({ category: 'avatar' }),
     name: faker.person.firstName(),
     msg: faker.music.songName(),
     time: "12:02",
@@ -69,7 +86,7 @@ const ChatList = [
   },
   {
     id: 2,
-    img: faker.image.avatar(),
+    img: faker.image.urlLoremFlickr({ category: 'avatar' }),
     name: faker.person.firstName(),
     msg: faker.music.songName(),
     time: "10:35",
@@ -79,7 +96,7 @@ const ChatList = [
   },
   {
     id: 3,
-    img: faker.image.avatar(),
+    img: faker.image.urlLoremFlickr({ category: 'avatar' }),
     name: faker.person.firstName(),
     msg: faker.music.songName(),
     time: "04:00",
@@ -89,7 +106,7 @@ const ChatList = [
   },
   {
     id: 4,
-    img: faker.image.avatar(),
+    img: faker.image.urlLoremFlickr({ category: 'avatar' }),
     name: faker.person.firstName(),
     msg: faker.music.songName(),
     time: "08:42",
@@ -99,7 +116,7 @@ const ChatList = [
   },
   {
     id: 5,
-    img: faker.image.avatar(),
+    img: faker.image.urlLoremFlickr({ category: 'avatar' }),
     name: faker.person.firstName(),
     msg: faker.music.songName(),
     time: "08:42",
@@ -109,25 +126,104 @@ const ChatList = [
   },
   {
     id: 6,
-    img: faker.image.avatar(),
+    img: faker.image.urlLoremFlickr({ category: 'avatar' }),
     name: faker.person.firstName(),
     msg: faker.music.songName(),
-    time: "08:42",
+    time: "10:36",
     unread: 0,
     pinned: false,
+    online: true,
+  }
+];
+
+const CallLogs = [
+
+  {
+    id: 0,
+    img: faker.image.urlLoremFlickr({ category: 'avatar' }),
+    name: faker.person.firstName(),
+    pinned: true,
     online: false,
+    missed: true,
+    incoming: false, 
   },
   {
-    id: 7,
-    img: faker.image.avatar(),
+    id: 1,
+    img: faker.image.urlLoremFlickr({ category: 'avatar' }),
     name: faker.person.firstName(),
-    msg: faker.music.songName(),
-    time: "08:42",
-    unread: 0,
+    pinned: false,
+    online: true,
+    missed: false,
+    incoming: true, 
+  },
+  {
+    id: 2,
+    img: faker.image.urlLoremFlickr({ category: 'avatar' }),
+    name: faker.person.firstName(),
     pinned: false,
     online: false,
+    missed: true,
+    incoming: true, 
+  },
+  {
+    id: 3,
+    img: faker.image.urlLoremFlickr({ category: 'avatar' }),
+    name: faker.person.firstName(),
+    pinned: false,
+    online: true,
+    missed: true,
+    incoming: false, 
+  },
+  {
+    id: 4,
+    img: faker.image.urlLoremFlickr({ category: 'avatar' }),
+    name: faker.person.firstName(),
+    pinned: false,
+    online: false,
+    missed: true,
+    incoming: false, 
   },
 ];
+
+const MembersList = [
+
+  {
+    id: 0,
+    img: faker.image.urlLoremFlickr({ category: 'avatar' }),
+    name: faker.person.firstName()
+  },
+  {
+    id: 1,
+    img: faker.image.urlLoremFlickr({ category: 'avatar' }),
+    name: faker.person.firstName()
+  },
+  {
+    id: 2,
+    img: faker.image.urlLoremFlickr({ category: 'avatar' }),
+    name: faker.person.firstName()
+  },
+  {
+    id: 3,
+    img: faker.image.urlLoremFlickr({ category: 'avatar' }),
+    name: faker.person.firstName()
+  },
+  {
+    id: 4,
+    img: faker.image.urlLoremFlickr({ category: 'avatar' }),
+    name: faker.person.firstName()
+  },
+  {
+    id: 5,
+    img: faker.image.urlLoremFlickr({ category: 'avatar' }),
+    name: faker.person.firstName()
+  },
+  {
+    id: 6,
+    img: faker.image.urlLoremFlickr({ category: 'avatar' }),
+    name: faker.person.firstName()
+  },
+
+]
 
 const Chat_History = [
   {
@@ -300,6 +396,8 @@ export {
   ChatList,
   Chat_History,
   Message_options,
+  SHARED_DOCUMENTS,
   SHARED_LINKS,
-  SHARED_DOCUMENTS
+  CallLogs,
+  MembersList
 };

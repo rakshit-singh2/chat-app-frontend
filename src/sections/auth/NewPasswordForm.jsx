@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
@@ -7,30 +6,29 @@ import FormProvider from "../../components/hook-form/FormProvider";
 import { Stack, Alert, InputAdornment, IconButton, Link, Button } from "@mui/material";
 import RHFTextField from '../../components/hook-form/RHFTextField';
 import { Eye, EyeSlash } from 'phosphor-react';
-import { useTheme } from '@mui/material/styles';
-import { Link as RouterLink } from 'react-router-dom';
-import { LoginUser } from '../../redux/slices/auth';
+import { NewPassword } from '../../redux/slices/auth';
 import { useDispatch } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 
-const LoginForm = () => {
+const NewPasswordForm = () => {
 
+    const [queryParameters] = useSearchParams();
     const dispatch = useDispatch();
 
-    const theme = useTheme();
     const [showPassword, setShowPassword] = useState(false);
 
-    const LoginSchema = Yup.object().shape({
-        email: Yup.string().required("Email is required").email("Email must be valid email address."),
-        password: Yup.string().required("Password is required"),
+    const NewPasswordSchema = Yup.object().shape({
+        password: Yup.string().min(6, "Password must be at least 6 characters.").required("Password is required"),
+        passwordConfirm: Yup.string().required("Password is required").oneOf([Yup.ref('password'), null], "Password must match."),
     });
 
     const defaultValues = {
-        email: "demo@text2them.com",
-        password: "demo1234"
+        password: "",
+        passwordConfirm: ""
     };
 
     const methods = useForm({
-        resolver: yupResolver(LoginSchema),
+        resolver: yupResolver(NewPasswordSchema),
         defaultValues,
     });
 
@@ -42,10 +40,12 @@ const LoginForm = () => {
     } = methods;
 
     const onSubmit = async (data) => {
-        try {
-            // submit data to backend
-            dispatch(LoginUser(data));
 
+        try {
+
+            console.log("connecting");
+            // submit data to forgot-password
+            dispatch(NewPassword({ ...data, token: queryParameters.get("resetToken") }));
         }
         catch (error) {
             console.log(error);
@@ -58,7 +58,6 @@ const LoginForm = () => {
     };
 
     return (
-
         <FormProvider
             methods={methods}
             onSubmit={handleSubmit(onSubmit)}
@@ -70,17 +69,29 @@ const LoginForm = () => {
                 {!!errors.afterSubmit && <Alert severity="error">{errors.afterSubmit.message}</Alert>}
 
                 <RHFTextField
-                    name={"email"}
-                    label={"Email address"}
-                />
-
-                <RHFTextField
                     name={"password"}
-                    label={"Password"}
+                    label={"New Password"}
                     type={showPassword ? "text" : "password"}
                     InputProps={{
                         endAdornment: (
-                            <InputAdornment position="end">
+                            <InputAdornment>
+                                <IconButton onClick={() => {
+                                    setShowPassword(!showPassword);
+                                }}>
+                                    {showPassword ? <Eye /> : <EyeSlash />}
+                                </IconButton>
+                            </InputAdornment>
+                        )
+                    }}
+                />
+
+                <RHFTextField
+                    name={"passwordConfirm"}
+                    label={"Confirm Password"}
+                    type={showPassword ? "text" : "password"}
+                    InputProps={{
+                        endAdornment: (
+                            <InputAdornment>
                                 <IconButton onClick={() => {
                                     setShowPassword(!showPassword);
                                 }}>
@@ -99,9 +110,7 @@ const LoginForm = () => {
                     my: 2
                 }}
             >
-                <Link component={RouterLink} to="/auth/reset-password" variant='subtitle2'>
-                    Forgot Password
-                </Link>
+
             </Stack>
 
             <Stack
@@ -124,14 +133,13 @@ const LoginForm = () => {
                         }
                     }}
                 >
-                    Login
+                    Submit
                 </Button>
 
             </Stack>
 
         </FormProvider>
+    )
+}
 
-    );
-};
-
-export default LoginForm;
+export default NewPasswordForm;

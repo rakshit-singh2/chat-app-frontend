@@ -3,44 +3,45 @@ import { Box, Stack, Typography, IconButton, Divider } from "@mui/material";
 import { GoogleLogo, GithubLogo, TwitterLogo } from 'phosphor-react';
 
 const AuthSocial = () => {
-  return (
-    <Box>
-        <Divider 
-            variant="middle" 
-            sx={{
-                my: 2.5, 
-                color: "text.disabled", 
-                '&::before, &::after': {
-                    borderTopStyle: "dashed"
-                }}}
+    return (
+        <Box>
+            <Divider
+                variant="middle"
+                sx={{
+                    my: 2.5,
+                    color: "text.disabled",
+                    '&::before, &::after': {
+                        borderTopStyle: "dashed"
+                    }
+                }}
             >
-            <Typography variant="overline">OR</Typography>
-        </Divider>
-        <Stack
-            direction={'column'}
-            alignItems={"center"}
-            justifyContent={"center"}
-            spacing={2}
-        >                      
+                <Typography variant="overline">OR</Typography>
+            </Divider>
             <Stack
+                direction={'column'}
                 alignItems={"center"}
-                direction={"row"}
-                spacing={2}           
+                justifyContent={"center"}
+                spacing={2}
             >
-                <IconButton>
-                    <GoogleLogo size={32} color="#DF3E30"/>
-                </IconButton>
-                <IconButton>
-                    <GithubLogo size={32} color="inherit"/>
-                </IconButton>
-                <IconButton>
-                    <TwitterLogo size={32} color="#1C9CEA" />
-                </IconButton>
+                <Stack
+                    alignItems={"center"}
+                    direction={"row"}
+                    spacing={2}
+                >
+                    <IconButton>
+                        <GoogleLogo size={32} color="#DF3E30" />
+                    </IconButton>
+                    <IconButton color="inherit">
+                        <GithubLogo size={32} />
+                    </IconButton>
+                    <IconButton>
+                        <TwitterLogo size={32} color="#1C9CEA" />
+                    </IconButton>
+                </Stack>
             </Stack>
-        </Stack>
-    
-    </Box>
-  )
+
+        </Box>
+    )
 }
 
 export default AuthSocial;

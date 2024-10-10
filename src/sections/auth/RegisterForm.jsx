@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
@@ -8,29 +7,33 @@ import { Stack, Alert, InputAdornment, IconButton, Link, Button } from "@mui/mat
 import RHFTextField from '../../components/hook-form/RHFTextField';
 import { Eye, EyeSlash } from 'phosphor-react';
 import { useTheme } from '@mui/material/styles';
-import { Link as RouterLink } from 'react-router-dom';
-import { LoginUser } from '../../redux/slices/auth';
 import { useDispatch } from 'react-redux';
+import { RegisterUser } from '../../redux/slices/auth';
 
-const LoginForm = () => {
+
+const RegisterForm = () => {
 
     const dispatch = useDispatch();
 
     const theme = useTheme();
     const [showPassword, setShowPassword] = useState(false);
 
-    const LoginSchema = Yup.object().shape({
+    const RegisterSchema = Yup.object().shape({
+        firstName: Yup.string().required("First name is required"),
+        lastName: Yup.string().required("Last name is required"),
         email: Yup.string().required("Email is required").email("Email must be valid email address."),
         password: Yup.string().required("Password is required"),
     });
 
     const defaultValues = {
+        firstName: "",
+        lastName: "",
         email: "demo@text2them.com",
         password: "demo1234"
     };
 
     const methods = useForm({
-        resolver: yupResolver(LoginSchema),
+        resolver: yupResolver(RegisterSchema),
         defaultValues,
     });
 
@@ -44,8 +47,7 @@ const LoginForm = () => {
     const onSubmit = async (data) => {
         try {
             // submit data to backend
-            dispatch(LoginUser(data));
-
+            dispatch(RegisterUser(data));
         }
         catch (error) {
             console.log(error);
@@ -58,7 +60,6 @@ const LoginForm = () => {
     };
 
     return (
-
         <FormProvider
             methods={methods}
             onSubmit={handleSubmit(onSubmit)}
@@ -69,11 +70,15 @@ const LoginForm = () => {
             >
                 {!!errors.afterSubmit && <Alert severity="error">{errors.afterSubmit.message}</Alert>}
 
-                <RHFTextField
-                    name={"email"}
-                    label={"Email address"}
-                />
+                <Stack
+                    direction={{ xs: "column", sm: "row" }}
+                    spacing={2}
+                >
+                    <RHFTextField name={"firstName"} label="First Name" />
+                    <RHFTextField name={"lastName"} label="Last Name" />
+                </Stack>
 
+                <RHFTextField name={"email"} label="Email" />
                 <RHFTextField
                     name={"password"}
                     label={"Password"}
@@ -90,25 +95,6 @@ const LoginForm = () => {
                         )
                     }}
                 />
-
-            </Stack>
-
-            <Stack
-                alignItems={"flex-end"}
-                sx={{
-                    my: 2
-                }}
-            >
-                <Link component={RouterLink} to="/auth/reset-password" variant='subtitle2'>
-                    Forgot Password
-                </Link>
-            </Stack>
-
-            <Stack
-                direction={"row"}
-                alignItems={"center"}
-                width={"100%"}
-            >
                 <Button
                     fullWidth
                     color='inherit'
@@ -124,14 +110,12 @@ const LoginForm = () => {
                         }
                     }}
                 >
-                    Login
+                    Create Account
                 </Button>
-
             </Stack>
 
         </FormProvider>
+    )
+}
 
-    );
-};
-
-export default LoginForm;
+export default RegisterForm

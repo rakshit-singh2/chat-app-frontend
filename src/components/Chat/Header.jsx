@@ -110,7 +110,7 @@ const ChatHeader = () => {
               }}
               variant="dot"
             >
-              <Avatar alt={faker.person.fullName()} src={faker.image.avatar()} />
+              <Avatar alt={faker.person.fullName()} src={faker.image.urlLoremFlickr({ category: 'avatar' })} />
             </StyledBadge>
           </Box>
           <Stack spacing={0.2}>

@@ -14,7 +14,7 @@ const Login = () => {
                 mb: 5, position: "relative"
             }}
         >
-            <Typography variant="h4">Login to Text 2 Us</Typography>
+            <Typography variant="h4">Login to ChatApp</Typography>
             <Stack direction={"row"} spacing={0.5} alignItems={"center"}>
                 <Typography variant="body2">New User?</Typography>
                 <Link to="/auth/register" component={RouterLink} variant="subtitle2">

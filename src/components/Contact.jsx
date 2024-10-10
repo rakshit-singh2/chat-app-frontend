@@ -125,7 +125,7 @@ const Contact = () => {
                         direction={"row"}
                         spacing={2}
                     >
-                        <Avatar src={faker.image.avatar()} alt={faker.person.firstName()} sx={{ height: 64, width: 64 }} />
+                        <Avatar src={faker.image.urlLoremFlickr({ category: 'avatar' })} alt={faker.person.firstName()} sx={{ height: 64, width: 64 }} />
                         <Stack
                             direction={"column"}
                             spacing={0.5}
@@ -281,7 +281,7 @@ const Contact = () => {
                             spacing={2}
                             alignItems={"center"}
                         >
-                            <Avatar src={faker.image.avatar()} alt={faker.person.fullName()} />
+                            <Avatar src={faker.image.urlLoremFlickr({ category: 'avatar' })} alt={faker.person.fullName()} />
                             <Stack
                                 direction={"column"}
                                 spacing={0.5}
