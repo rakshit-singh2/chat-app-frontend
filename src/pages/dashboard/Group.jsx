@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Stack, Box, Button, Divider, Typography } from '@mui/material';
+import { Stack, Box, Button, Divider, Typography, Link } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import SearchHeader from '../../components/SearchHeader';
 import { Plus } from 'phosphor-react';
@@ -44,7 +44,7 @@ const Group = () => {
                             justifyContent={'space-between'}   
                             spacing={2}           
                         >
-                            <Typography>
+                            <Typography variant='subtitle2' component={Link}>
                                 Create New Group
                             </Typography>            
                             <Button
