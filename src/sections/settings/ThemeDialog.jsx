@@ -38,7 +38,6 @@ const ThemeDialog = ({open, handleClose}) => {
             onClose={handleClose}
             keepMounted
             TransitionComponent={Transition}
-            tran = 'true'
             sx={{
                 p: 4,               
             }}  
