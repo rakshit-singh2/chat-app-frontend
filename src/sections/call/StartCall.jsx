@@ -1,10 +1,5 @@
 import { forwardRef } from 'react';
-import {Box, Dialog, DialogContent, DialogTitle, Typography, Stack, Slide, Button, Alert, IconButton, Grid, Avatar} from '@mui/material';
-import FormProvider from '../../components/hook-form/FormProvider';
-import * as Yup from 'yup';
-import {useForm} from 'react-hook-form';
-import {yupResolver} from '@hookform/resolvers/yup';
-import { useTheme } from '@mui/material/styles';
+import {Box, Dialog, DialogContent, DialogTitle, Typography, Stack, Slide, Button, IconButton} from '@mui/material';
 import { XCircle, MagnifyingGlass } from 'phosphor-react';
 import { Search, SearchIconWrapper, StyledInputBase} from '../../components/Search';
 import { CallElement } from '../../components/CallElement';
