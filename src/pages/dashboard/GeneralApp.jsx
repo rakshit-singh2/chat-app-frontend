@@ -20,11 +20,10 @@ const GeneralApp = () => {
     >
       {/* Chats */}     
       <Chats />
-     
       <Box
         sx={{
           height: "100%",
-          width: sideBar.open ? "calc(100vw - 320px - 320px - 100px + 10px)" : "calc(100vw - 320px - 100px + 10px)",//320 for right side and 420 for left side 10 px for some kind of error needs to be figured out
+          width: sideBar.open ? "calc(100vw - 320px - 320px - 100px)" : "calc(100vw - 320px - 100px)",//320 for right side and 420 for left side 10 px for some kind of error needs to be figured out
           backgroundColor: theme.palette.mode === "light" ? "#F0F4FA" : theme.palette.background.paper,
         }}
       >

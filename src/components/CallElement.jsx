@@ -82,8 +82,9 @@ import StyledBadge from './StyledBadge';
     return (
         <Box 
         mt={3}
-        sx={{            
-            width: "100%",
+        sx={{
+            marginLeft:'0.5%',         
+            width: "99%",
             borderRadius: 1,
             backgroundColor: theme.palette.mode === "light" ? "#fff" : theme.palette.background.paper, 
             boxShadow: "0 0 2px rgba(0, 0, 0, 0.25)"         

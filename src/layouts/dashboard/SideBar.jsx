@@ -37,7 +37,7 @@ const SideBar = () => {
                 py={3}
                 alignItems={"center"}
                 justifyContent="space-between"
-                sx={{ height: "100%" }}
+                sx={{ height: "100%", width: 100 }}
             >
                 <Stack alignItems={"center"} spacing={4}>
                     <Box

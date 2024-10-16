@@ -63,7 +63,8 @@ const Contact = () => {
     const theme = useTheme();
     const dispatch = useDispatch();
     const handleCloseBlock = () => {
-        setOpenBlock(false);    }
+        setOpenBlock(false);
+    }
 
     const handleDeleteBlock = () => {
         setOpenDelete(false);
@@ -76,7 +77,7 @@ const Contact = () => {
                 <Box
                     p={2}
                     sx={{
-                        height: 100,
+                        height: 90,
                         width: "100%",
                         backgroundColor: theme.palette.mode === "light" ? "#F8FAFF" : theme.palette.background.paper,
                         boxShadow: "0 0 2px rgba(0, 0, 0, 0.25)"
@@ -91,8 +92,6 @@ const Contact = () => {
                             height: "100%"
                         }}
                     >
-
-
                         <Typography variant="body1" fontWeight={600}>
                             Contact Info
                         </Typography>
@@ -103,9 +102,6 @@ const Contact = () => {
                         >
                             <XCircle size={24} />
                         </IconButton>
-
-
-
                     </Stack>
                 </Box>
 
@@ -117,7 +113,13 @@ const Contact = () => {
                         height: "100%",
                         position: "relative",
                         flexGrow: 1,
-                        overflowY: "scroll"
+                        overflowY: "auto",
+                        overflowX: "hidden",
+                        '&::-webkit-scrollbar': {
+                            display: 'none',
+                        },
+                        scrollbarWidth: 'none',
+                        msOverflowStyle: 'none',
                     }}
                 >
                     <Stack
