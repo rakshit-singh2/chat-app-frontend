@@ -3,16 +3,13 @@ import { faker } from '@faker-js/faker';
 import { Stack, Box, Avatar, Typography, IconButton, Divider } from "@mui/material"
 import { useTheme } from "@mui/material/styles";
 import { CaretDown, MagnifyingGlass, Phone, VideoCamera } from 'phosphor-react';
-import { StyledBadge } from '../settings/StyledBadge';
 import { useDispatch } from 'react-redux';
 import { ToggleSideBar } from '../../redux/slices/app';
-
+import StyledBadge from '../StyledBadge';
 
 const Header = () => {
-
     const theme = useTheme();
     const dispatch = useDispatch();
-
   return (
     <Box
             p={2}

@@ -27,14 +27,13 @@ export default function RHFAutocomplete({name, label, helperText, ...other}) {
                         }                        
                         id="tags-filled"
                         onChange={(event, newValue) => setValue(name, newValue, {shouldValidate: true})}
-                        error={!!error}                         
+                        {...(error ? { error: true, helperText: error.message } : { helperText })}                       
                         {...other}                        
                         renderInput={(params) => (
                             <TextField
                                 {...params}                               
                                 label={label}
-                                error={!!error}
-                                helperText={error ? error.message : helperText}                                
+                                {...(error ? { error: true, helperText: error.message } : { helperText })}                               
                             />
                         )}
                     />    

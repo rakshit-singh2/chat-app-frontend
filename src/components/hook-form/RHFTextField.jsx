@@ -27,8 +27,7 @@ export default function RHFTextField({name, helperText, ...other}) {
                                 ? ""
                                 : field.value
                         }
-                        error={!!error} 
-                        helperText={error ? error.message : helperText}
+                        {...(error ? { error: true, helperText: error.message } : { helperText })}
                         {...other}
                     />                
                 )

@@ -48,18 +48,20 @@ const Nav_Buttons = [
     route: "/call",
     title: "Voice and Video Calling" 
   },
-  {
-    index: 3,
-    icon: <AdminPanelSettingsOutlinedIcon />,
-    route: "/admin",
-    title: "Admin"
-  },
+  // {
+  //   index: 3,
+  //   icon: <AdminPanelSettingsOutlinedIcon />,
+  //   route: "/admin",
+  //   title: "Admin"
+  // },
 ];
 
 const Nav_Setting = [
   {
-    index: 3,
+    index: 4,
     icon: <GearSix />,
+    route: "/settings",
+    title: "Settings"
   },
 ];
 

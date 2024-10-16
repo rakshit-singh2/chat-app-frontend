@@ -41,7 +41,7 @@ const RHFCodes = ({keyName = '', inputs = [], ...other}) => {
             render={({ field, fieldState: { error } }) => (
               <TextField
                 {...field}
-                error={!!error}
+                {...(error ? { error: true, helperText: error.message } : { helperText })}
                 autoFocus={index === 0}
                 placeholder={"-"}
                 onChange={(event) => {
