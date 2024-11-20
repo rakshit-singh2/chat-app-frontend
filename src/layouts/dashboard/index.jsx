@@ -6,8 +6,8 @@ import { useSelector } from "react-redux";
 
 const DashboardLayout = () => {
 
-  // const { isLoggedIn } = useSelector((state) => state.auth);
-  const isLoggedIn = true;
+  const { isLoggedIn } = useSelector((state) => state.auth);
+  // const isLoggedIn = true;
 
   if (!isLoggedIn) {
     return <Navigate to="/auth/login" />

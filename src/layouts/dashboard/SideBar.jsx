@@ -9,6 +9,7 @@ import AntSwitch from "../../components/AntSwitch";
 import { useDispatch } from "react-redux";
 import { Profile_Menu, Nav_Setting } from '../../data';
 import { useNavigate } from "react-router-dom";
+import { LogoutUser } from "../../redux/slices/auth";
 const SideBar = () => {
 
     const dispatch = useDispatch();

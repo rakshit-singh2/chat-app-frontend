@@ -42,10 +42,8 @@ const NewPasswordForm = () => {
     const onSubmit = async (data) => {
 
         try {
-
-            console.log("connecting");
             // submit data to forgot-password
-            dispatch(NewPassword({ ...data, token: queryParameters.get("resetToken") }));
+            dispatch(NewPassword({ ...data, token: queryParameters.get("token") }));
         }
         catch (error) {
             console.log(error);
@@ -74,7 +72,7 @@ const NewPasswordForm = () => {
                     type={showPassword ? "text" : "password"}
                     InputProps={{
                         endAdornment: (
-                            <InputAdornment>
+                            <InputAdornment position="start">
                                 <IconButton onClick={() => {
                                     setShowPassword(!showPassword);
                                 }}>
@@ -91,7 +89,7 @@ const NewPasswordForm = () => {
                     type={showPassword ? "text" : "password"}
                     InputProps={{
                         endAdornment: (
-                            <InputAdornment>
+                            <InputAdornment position="start">
                                 <IconButton onClick={() => {
                                     setShowPassword(!showPassword);
                                 }}>

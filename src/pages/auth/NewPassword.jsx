@@ -46,7 +46,6 @@ const NewPassword = () => {
                     }}
                 >
                     Return to Sign In
-                
                 </Link>
             </Stack>
                 

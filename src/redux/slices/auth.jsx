@@ -121,7 +121,6 @@ export function ForgotPassword(formValues) {
 
 export function LoginUser(formValues) {
   return async (dispatch, getState) => {
-    // Make API call here
 
     dispatch(slice.actions.updateIsLoading({ isLoading: true, error: false }));
 
@@ -138,7 +137,7 @@ export function LoginUser(formValues) {
         }
       )
       .then(function (response) {
-        console.log(response);
+        // console.log(response);
         dispatch(
           slice.actions.logIn({
             isLoggedIn: true,
@@ -148,7 +147,7 @@ export function LoginUser(formValues) {
         );
         window.localStorage.setItem("user_id", response.data.user_id);
         dispatch(
-          showSnackbar({ severity: "success", message: response.data.message })
+          ShowSnackbar({ severity: "success", message: response.data.message })
         );
         dispatch(
           slice.actions.updateIsLoading({ isLoading: false, error: false })
