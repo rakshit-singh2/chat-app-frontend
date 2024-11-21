@@ -103,7 +103,7 @@ export function ForgotPassword(formValues) {
         console.log(response);
 
         dispatch(
-          showSnackbar({ severity: "success", message: response.data.message })
+          ShowSnackbar({ severity: "success", message: response.data.message })
         );
         dispatch(
           slice.actions.updateIsLoading({ isLoading: false, error: false })
@@ -193,7 +193,7 @@ export function RegisterUser(formValues) {
         );
 
         dispatch(
-          showSnackbar({ severity: "success", message: response.data.message })
+          ShowSnackbar({ severity: "success", message: response.data.message })
         );
         dispatch(
           slice.actions.updateIsLoading({ isLoading: false, error: false })
@@ -243,7 +243,7 @@ export function VerifyEmail(formValues) {
 
 
         dispatch(
-          showSnackbar({ severity: "success", message: response.data.message })
+          ShowSnackbar({ severity: "success", message: response.data.message })
         );
         dispatch(
           slice.actions.updateIsLoading({ isLoading: false, error: false })

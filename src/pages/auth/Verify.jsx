@@ -11,7 +11,7 @@ const Verify = () => {
                     mb: 5, position: "relative"
                 }}
             >
-                <Typography variant="h4">Verify OTP - Text 2 Them</Typography>
+                <Typography variant="h4">Please verify otp</Typography>
                 <Stack direction={"row"} spacing={0.5} alignItems={"center"}>
                     <Typography variant="body2">Already A User?</Typography>
                     <Link to="/auth/login" component={RouterLink} variant="subtitle2">
