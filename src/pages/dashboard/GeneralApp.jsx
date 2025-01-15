@@ -1,58 +1,102 @@
 import Conversation from "../../components/Conversation";
 import Chats from "./Chats";
-import { Stack, Box } from '@mui/material';
+import { Stack, Box, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import Contact from "../../components/RightSideBar/Contact";
 import { useSelector } from "react-redux";
 import StarredMessages from "../../components/RightSideBar/StarredMessages";
 import SharedMessages from "../../components/RightSideBar/SharedMessages";
-
-const GeneralApp = () => {
+import NoChatSVG from "../../assets/Illustration/NoChat";
+const GeneralChats = () => {
   const theme = useTheme();
-  const {sideBar} = useSelector((store) => store.app);
+  const { sideBar, room_id, chat_type } = useSelector((store) => store.app);
 
   return (
-    <Stack
-      direction={"row"}
-      sx={{
-        width: "100%"
-      }}
+    <Box
+      width={"100%"}
+      height={"100%"}
     >
-      {/* Chats */}     
-      <Chats />
-      <Box
-        sx={{
-          height: "100%",
-          width: sideBar.open ? "calc(100vw - 320px - 420px)" : "calc(100vw - 420px)",//320 for right side and 420 for left side
-          backgroundColor: theme.palette.mode === "light" ? "#F0F4FA" : theme.palette.background.paper,
-        }}
+      <Stack
+        direction={"row"}
+        height={"inherit"}
       >
-        {/* Conversation */}
-        <Conversation />
-      </Box>
+        <Box
+          height={"100%"}
+        >
+          <Stack
+            direction={"row"}
+            height={"100%"}
+            sx={{
+              width: "320px",
+              border: '1px solid rgba(181, 181, 181, 0.75'
+            }}
+          >
+            <Chats />
+          </Stack>
+        </Box>
+        <Stack
+          width={"100%"}
+        >
+          <Box
+            sx={{
+              height: "100%",
+              width: "100%",
+              backgroundColor: theme.palette.mode === "light" ? "#fff" : theme.palette.background.paper,
+            }}
+          >
+            {room_id !== null && chat_type === "individual" ? <Conversation /> :
 
-      {/* Contact */}
-      {sideBar.open && (() => {
-        switch (sideBar.type) {
-          case "CONTACT":            
-            return <Contact />;
-                      
-          case "STARRED":
+              <Stack
+                spacing={2}
+                sx={{ height: "100%", width: "100%" }}
+                alignItems={"center"}
+                justifyContent={"center"}
+              >
+                <NoChatSVG />
+                <Typography
+                  variant="subtitle2"
+                >
+                  Select a conversation or start a new one
+                </Typography>
+              </Stack>
+            }
+          </Box>
+        </Stack>
+        <Stack
+          direction={"row"}
+          height={"100%"}
+        >
+          <Box
+            sx={{
+              display: sideBar.open ? "block" : "none"
+            }}
+          >
+            {sideBar.open && (() => {
+              switch (sideBar.type) {
+                case "CONTACT":
+                  return <Contact />;
 
-            return <StarredMessages />
-          
-          case "SHARED":
+                case "STARRED":
 
-            return <SharedMessages />;
+                  return <StarredMessages />
 
-          default: 
-            break;
-        }
+                case "SHARED":
 
-      })()}
-      
-    </Stack>
+                  return <SharedMessages />;
+
+                default:
+                  break;
+              }
+
+            })()}
+          </Box>
+        </Stack>
+      </Stack>
+    </Box>
   );
 };
 
-export default GeneralApp;
+export default GeneralChats;
+
+
+
