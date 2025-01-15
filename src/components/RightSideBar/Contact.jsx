@@ -3,8 +3,9 @@ import { Box, IconButton, Stack, Typography, Divider, Avatar, Button, useTheme, 
 import { useDispatch } from "react-redux";
 import { faker } from "@faker-js/faker";
 import { VideoCamera, Phone, CaretRight, Star, Bell, Flag, Trash, XCircle } from "phosphor-react";
-import AntSwitch from './AntSwitch';
-import { ToggleSideBar, UpdateSidebarType } from "../redux/slices/app";
+import AntSwitch from '../AntSwitch';
+import { ToggleSideBar, UpdateSidebarType } from "../../redux/slices/app";
+import RightSideHeader from "./RightSideHeader";
 
 const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -74,7 +75,8 @@ const Contact = () => {
         <Box sx={{ width: 320, height: "100vh" }}>
             <Stack sx={{ height: "100%" }} >
                 {/* Header */}
-                <Box
+                <RightSideHeader title="Contact Info"/>
+                {/* <Box
                     p={2}
                     sx={{
                         height: 90,
@@ -103,7 +105,7 @@ const Contact = () => {
                             <XCircle size={24} />
                         </IconButton>
                     </Stack>
-                </Box>
+                </Box> */}
 
                 {/* Body */}
                 <Stack

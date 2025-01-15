@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTheme, styled } from '@mui/material/styles';
 import { Avatar, Stack, Typography, Button, Box, IconButton } from '@mui/material';
-import { socket, connectSocket } from '../socket';
+import { socket, connectSocket } from '../utils/socket';
 import StyledBadge from '../components/StyledBadge';
 import { Chat } from 'phosphor-react';
 
@@ -59,7 +59,7 @@ const UserComponent = ({firstName, lastName, _id, online, img}) => {
             <Button
                 onClick={() => {
                    socket.emit("friend_request", {to: _id, from: user_id}, () => {
-                        //alert("request sent");
+                        alert("request sent");
                    });
                 }}
             >

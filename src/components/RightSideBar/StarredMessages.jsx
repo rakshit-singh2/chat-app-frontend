@@ -2,9 +2,10 @@ import { Box, IconButton, Stack, Tabs, Tab, Typography, useTheme, Grid } from "@
 import { ArrowLeft } from "phosphor-react";
 import React, { useState } from 'react'
 import { useDispatch } from "react-redux";
-import { UpdateSidebarType } from "../redux/slices/app";
+import { UpdateSidebarType } from "../../redux/slices/app";
 
-import Message from "./Conversation/Message";
+import Message from "../Conversation/Message";
+import RightSideHeader from "./RightSideHeader";
 const StarredMessages = () => {
 
   const theme = useTheme();
@@ -19,7 +20,8 @@ const StarredMessages = () => {
         }}
       >
         {/* Header */}
-        <Box
+        <RightSideHeader title="Starred Messages"/>
+        {/* <Box
           p={2}
           sx={{
             height: 100,
@@ -49,7 +51,7 @@ const StarredMessages = () => {
             </Typography>
 
           </Stack>
-        </Box>
+        </Box> */}
         {/* Body */}
         <Stack
           p={3}

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { socket } from "../../socket";
+import { socket } from "../../utils/socket";
 import axios from "../../utils/axios";
 
 const initialState = {

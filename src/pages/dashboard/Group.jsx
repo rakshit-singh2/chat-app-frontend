@@ -79,7 +79,7 @@ const Group = () => {
                 <Box
                     sx={{
                         height: "100%",
-                        width: "calc(100vw - 420px)", /* sidebar.open ? "calc(100vw - 740px)" : */
+                        width: "calc(100vw - 420px)", /* sideBar.open ? "calc(100vw - 740px)" : */
                         backgroundColor: theme.palette.mode === "light" ? "#F0F4FA" : theme.palette.background.paper,
                     }}
                 >

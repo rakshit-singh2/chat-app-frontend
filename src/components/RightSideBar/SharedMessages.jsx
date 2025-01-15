@@ -2,10 +2,11 @@ import { Box, IconButton, Stack, Tabs, Tab, Typography, useTheme, Grid } from "@
 import { ArrowLeft } from "phosphor-react";
 import React, { useState } from 'react'
 import { useDispatch } from "react-redux";
-import { UpdateSidebarType } from "../redux/slices/app";
-import { SHARED_DOCUMENTS, SHARED_LINKS } from '../data';
+import { UpdateSidebarType } from "../../redux/slices/app";
+import { SHARED_DOCUMENTS, SHARED_LINKS } from '../../data';
 import { faker } from "@faker-js/faker";
-import { DocMsg, LinkMsg } from "./Conversation/MsgTypes";
+import { DocMsg, LinkMsg } from "../Conversation/MsgTypes";
+import RightSideHeader from "./RightSideHeader";
 
 const SharedMessages = () => {
 
@@ -26,7 +27,8 @@ const SharedMessages = () => {
                 }}
             >
                 {/* Header */}
-                <Box
+                <RightSideHeader title="Contact Info"/>
+                {/* <Box
                     p={2}
                     sx={{
                         height: 100,
@@ -56,7 +58,7 @@ const SharedMessages = () => {
                         </Typography>
 
                     </Stack>
-                </Box>
+                </Box> */}
                 <Tabs value={value} onChange={handleChange} centered>
                     <Tab label="Media" />
                     <Tab label="Links" />

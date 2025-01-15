@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { socket } from "../../socket";
+import { socket } from "../../utils/socket";
 import axios from "../../utils/axios";
-
+// ----------------------------------------------------------------------
 const initialState = {
   open_audio_dialog: false,
   open_audio_notification_dialog: false,
