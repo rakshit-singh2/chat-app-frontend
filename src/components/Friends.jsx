@@ -116,7 +116,7 @@ const FriendRequestComponent = ({firstName, lastName, _id, online, img, id}) => 
             <Button
                 onClick={() => {
                    socket.emit("accept_request", {request_id: id}, () => {
-                        //alert("request sent");
+                        alert("request sent");
                    });
                 }}
             >

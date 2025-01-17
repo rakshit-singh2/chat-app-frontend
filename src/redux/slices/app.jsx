@@ -142,7 +142,7 @@ export const FetchFriends = () => {
 
 export const FetchFriendRequests = () => {
   return async (dispatch, getState) => {
-    await axios.get("/user/get-friend-requests", {
+    await axios.get("/user/get-requests", {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${getState().auth.token}`,

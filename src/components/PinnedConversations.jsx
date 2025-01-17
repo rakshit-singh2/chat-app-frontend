@@ -4,7 +4,7 @@ import { CallLogs, ChatList } from '../data/index';
 import { useTheme } from '@mui/material/styles';
 import { CallLogElement } from './CallElement';
 
-const PinnedConversations = ({ chatType }) => {
+const PinnedConversations = ({ chatType, conversations }) => {
 
     const theme = useTheme();
 
@@ -26,7 +26,7 @@ const PinnedConversations = ({ chatType }) => {
                         switch (chatType) {
 
                             case "Chat":
-                                return ChatList.filter((el) => el.pinned).map((el) => <ChatElement {...el} key={el.id} />);
+                                return conversations.filter((el) => el.pinned).map((el) => <ChatElement {...el} key={el.id} />);
 
                             case "Group":
                                 return ChatList.filter((el) => el.pinned).map((el) => <ChatElement {...el} key={el.id} />);
