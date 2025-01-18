@@ -28,7 +28,7 @@ const slice = createSlice({
           name: `${user?.firstName} ${user?.lastName}`,
           online: user?.status === "Online",
           img: `https://${S3_BUCKET_NAME}.s3.${AWS_S3_REGION}.amazonaws.com/${user?.avatar}`,
-          msg: el.messages.slice(-1)[0].text, 
+          msg: el.messages && el.messages.length > 0 ? el.messages.slice(-1)[0].text : '',  
           time: "9:36",
           unread: 0,
           pinned: false,

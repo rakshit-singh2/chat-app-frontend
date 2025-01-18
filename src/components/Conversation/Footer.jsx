@@ -90,8 +90,8 @@ import {
                   display: openActions ? "inline-block" : "none",
                 }}
               >
-                {Actions.map((el) => (
-                  <Tooltip placement="right" title={el.title}>
+                {Actions.map((el, index) => (
+                  <Tooltip placement="right" title={el.title} key={index}>
                     <Fab
                       onClick={() => {
                         setOpenActions(!openActions);
@@ -159,7 +159,7 @@ import {
     const { current_conversation } = useSelector(
       (state) => state.conversation.direct_chat
     );
-  
+
     const user_id = window.localStorage.getItem("user_id");
   
     const isMobile = useResponsive("between", "md", "xs", "sm");
@@ -169,7 +169,7 @@ import {
     const [openPicker, setOpenPicker] = React.useState(false);
   
     const [value, setValue] = useState("");
-    console.log({value})
+
     const inputRef = useRef(null);
   
     function handleEmojiClick(emoji) {
