@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Box, Stack, Button, Divider, useTheme } from "@mui/material";
 import { ArchiveBox } from "phosphor-react";
 import SearchHeader from '../../components/SearchHeader';
+import { SimpleBarStyle } from "../../components/Scrollbar";
 import PinnedConversations from '../../components/PinnedConversations';
 import AllConversations from '../../components/AllConversations';
 import { useNavigate } from "react-router-dom";
@@ -24,13 +25,14 @@ const Chats = () => {
 
   useEffect(() => {
     socket.emit("get_direct_conversations", { user_id }, (data) => {
-      // data => list of conversations                    
-      dispatch(FetchDirectConversations({ data }));
-    })
+      // console.log(data); // this data is the list of conversations
+      // dispatch action
+
+      dispatch(FetchDirectConversations({ conversations: data }));
+    });
   }, []);
-  const handleOpenDialog = () => {
-    setOpenDialog(true);
-  };
+
+
 
   const handleCloseDialog = () => {
     setOpenDialog(false);
@@ -73,11 +75,12 @@ const Chats = () => {
             }}
             spacing={2}
           >
+            <SimpleBarStyle timeout={500} clickOnTrack={false}>
 
-            <PinnedConversations chatType="Chat" conversations={conversations} />
+              <PinnedConversations chatType="Chat" conversations={conversations} />
 
-            <AllConversations chatType="Chat" conversations={conversations} />
-
+              <AllConversations chatType="Chat" conversations={conversations} />
+            </SimpleBarStyle>
           </Stack>
         </Stack>
       </Box>
