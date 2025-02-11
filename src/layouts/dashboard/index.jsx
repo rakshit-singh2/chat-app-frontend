@@ -88,10 +88,11 @@ const DashboardLayout = () => {
       });
 
       socket.on("start_chat", (data) => {
-
+        // console.log(data._id);
         const existing_conversation = conversations.find(
           (el) => el?.id === data._id
         );
+        // console.log({existing_conversation})
         if (existing_conversation) {
           // update direct conversation
           dispatch(UpdateDirectConversation({ conversation: data }));

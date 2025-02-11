@@ -9,17 +9,20 @@ import { useDispatch, useSelector } from "react-redux";
 import Friends from "../../sections/dashboard/Friends";
 import { socket } from "../../utils/socket";
 import { FetchDirectConversations } from "../../redux/slices/conversation";
+import useResponsive from "../../hooks/useResponsive";
+import BottomNav from "../../layouts/dashboard/BottomNav";
 
 const user_id = window.localStorage.getItem("user_id");
 
 const Chats = () => {
 
   const navigate = useNavigate();
-  const [value, setValue] = useState(0);
+
   const dispatch = useDispatch();
 
   const [openDialog, setOpenDialog] = useState(false);
   const theme = useTheme();
+  const isDesktop = useResponsive("up", "md");
   const { conversations } = useSelector((state) => state.conversation.direct_chat);
 
   useEffect(() => {
@@ -43,11 +46,14 @@ const Chats = () => {
       <Box
         sx={{
           position: "relative",
-          width: 420,
+          width: isDesktop ? 320 : "100vw",
           backgroundColor: theme.palette.mode === "light" ? "#F8FAFF" : theme.palette.background.paper,
           boxShadow: "0 0 2px rgba(0, 0, 0, 0.25)"
         }}
       >
+        {!isDesktop && (
+          <BottomNav />
+        )}
         <Stack p={3} spacing={2} sx={{ height: "100vh" }} >
 
           <SearchHeader header={"Chats"} />

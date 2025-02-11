@@ -44,7 +44,7 @@ const GeneralChats = () => {
               backgroundColor: theme.palette.mode === "light" ? "#fff" : theme.palette.background.paper,
             }}
           >
-            {chat_type === "individual" && room_id !== null ? (<ChatComponent />) :
+            {chat_type === "individual" && room_id != null ? (<ChatComponent />) :
 
               <Stack
                 spacing={2}

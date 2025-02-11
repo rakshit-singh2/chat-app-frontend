@@ -1,78 +1,88 @@
-import {Box, Stack, Avatar, Typography, Badge} from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+import { Box, Stack, Avatar, Typography, Badge } from '@mui/material';
+import { styled, useTheme } from '@mui/material/styles';
 import StyledBadge from '../components/StyledBadge';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { SelectConversation } from '../redux/slices/app';
 
-const ChatElement = ({id, name, img, msg, time, unread, online}) => {
+const truncateText = (string, n) => {
+    return string?.length > n ? `${string?.slice(0, n)}...` : string;
+};
 
+const StyledChatBox = styled(Box)(({ theme }) => ({
+    "&:hover": {
+        cursor: "pointer",
+    },
+}));
+
+const ChatElement = ({ img, name, msg, time, unread, online, id }) => {
     const dispatch = useDispatch();
+    const { room_id } = useSelector((state) => state.app);
+    const selectedChatId = room_id?.toString();
+
+    let isSelected = +selectedChatId === id;
+
+    if (!selectedChatId) {
+        isSelected = false;
+    }
+
     const theme = useTheme();
+
     return (
-        <Box 
-            onClick ={()=>{
-                dispatch(SelectConversation({room_id:id}));
+        <StyledChatBox
+            onClick={() => {
+                dispatch(SelectConversation({ room_id: id }));
             }}
             sx={{
                 width: "100%",
+
                 borderRadius: 1,
-                backgroundColor: theme.palette.mode === "light" ? "#fff" : theme.palette.background.paper,                
+
+                backgroundColor: isSelected
+                    ? theme.palette.mode === "light"
+                        ? alpha(theme.palette.primary.main, 0.5)
+                        : theme.palette.primary.main
+                    : theme.palette.mode === "light"
+                        ? "#fff"
+                        : theme.palette.background.paper,
             }}
             p={2}
-        >     
+        >
             <Stack
-                direction={"row"}
-                spacing={2}
+                direction="row"
                 alignItems={"center"}
-                justifyContent={"space-between"}
-            > 
-                    <Stack
-                        direction={"row"}
-                        spacing={2}
-                        alignItems={"center"}
-                        justifyContent={"space-between"}                        
-                    >
-                        <Stack>
-                            <StyledBadge
-                                overlap="circular"
-                                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}  
-                                variant={online ? "dot" : ""}                          
-                            >
-                                <Avatar src={img}    />   
-                            </StyledBadge>      
-                        </Stack>  
-                        <Stack
-                            spacing={0.3}
-                            direction={"column"}
+                justifyContent="space-between"
+            >
+                <Stack direction="row" spacing={2}>
+                    {" "}
+                    {online ? (
+                        <StyledBadge
+                            overlap="circular"
+                            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+                            variant="dot"
                         >
-                            <Typography variant='subtitle2'>
-                                {name}
-                            </Typography>
-                            <Typography variant='caption'>
-                                {msg}
-                            </Typography>    
-                        </Stack>                  
-                    </Stack> 
-                <Stack
-                    spacing={2}
-                    alignItems={"center"}
-                >
-                    <Typography
-                        sx={{
-                            fontWeight: 600
-                        }}
-                        variant='caption'
-                    >
+                            <Avatar alt={name} src={img} />
+                        </StyledBadge>
+                    ) : (
+                        <Avatar alt={name} src={img} />
+                    )}
+                    <Stack spacing={0.3}>
+                        <Typography variant="subtitle2">{name}</Typography>
+                        <Typography variant="caption">{truncateText(msg, 20)}</Typography>
+                    </Stack>
+                </Stack>
+                <Stack spacing={2} alignItems={"center"}>
+                    <Typography sx={{ fontWeight: 600 }} variant="caption">
                         {time}
                     </Typography>
                     <Badge
-                        color="primary" 
+                        className="unread-count"
+                        color="primary"
                         badgeContent={unread}
-                    />                    
+                    />
                 </Stack>
             </Stack>
-        </Box>
-    )
-}
+        </StyledChatBox>
+    );
+};
 
 export default ChatElement;

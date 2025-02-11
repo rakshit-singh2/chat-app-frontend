@@ -18,7 +18,7 @@ const slice = createSlice({
   initialState,
   reducers: {
     fetchDirectConversations(state, action) {
-      const list = (action.payload?.conversations || []).map((el) => {
+      const list = action.payload.conversations.map((el) => {
         const user = el.participants.find(
           (elm) => elm._id.toString() !== user_id
         );
@@ -85,6 +85,7 @@ const slice = createSlice({
       });
     },
     setCurrentConversation(state, action) {
+      // console.log({action})
       state.direct_chat.current_conversation = action.payload;
     },
     fetchCurrentMessages(state, action) {
@@ -111,6 +112,7 @@ export default slice.reducer;
 // ----------------------------------------------------------------------
 
 export const FetchDirectConversations = ({ conversations }) => {
+
   return async (dispatch, getState) => {
     dispatch(slice.actions.fetchDirectConversations({ conversations }));
   };
